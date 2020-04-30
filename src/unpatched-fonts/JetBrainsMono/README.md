@@ -1,6 +1,6 @@
 [![official JetBrains project](http://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
 
-# JetBrainsMono
+# JetBrains Mono
 A typeface made for developers. \
 More about font features & design can be found on [its page](https://jetbrains.com/mono/).
 
@@ -13,25 +13,45 @@ The most recent version of JetBrains Mono ships with your JetBrains IDE starting
 Select JetBrains Mono in the IDE settings: go to `Preferences/Settings` → `Editor` → `Font`, and then select JetBrains Mono from the Font dropdown.
 
 ### Another IDE or an older version of a JetBrains IDE
+#### Through brew (MacOS only)
+1. Tap the font cask to make the Jetbrains Mono font available :
 
-1. [Download font](https://download.jetbrains.com/fonts/JetBrainsMono-1.0.0.zip?fromGitHub). 
+    ```console
+    brew tap homebrew/cask-fonts
+    ```
+2. Install it using the `font-jetbrains-mono` cask:
+
+   ```console
+   brew cask install font-jetbrains-mono
+   ```
+   
+#### Through Chocolatey (Windows only)
+1. Install Chocolatey if you haven't done already. See [this page](https://chocolatey.org/install) for instructions on how to do that.
+2. In an elevated cmd console (Run as administrator...) :
+
+    ```console
+    choco install jetbrainsmono
+    ```
+
+#### Or manually
+1. [Download font](https://github.com/JetBrains/JetBrainsMono/releases/latest). 
 2. Unzip the archive and install the font:
    - Mac. Select all font files in the folder and double-click them. Click the *"Install Font"* button.
    - Windows. Select all font files in the folder, right-click any of them, then pick *"Install"* from the menu.
-   - Ubuntu. Open a terminal with `Ctrl`+`Alt`+`T` and run the following:
+   - Linux. Open a terminal and run the following:
    
+      ```bash
+      unzip <font_file.zip> -d ~/.local/share/fonts && fc-cache -fv
       ```
-      cd <name_of_our_archive.zip>
-      unzip "\*.zip" -d ${HOME}/.fonts
-      sudo fc-cache -f -v
-      ```
+
+#### Picking the font for your IDE
 3. Restart your IDE.
 4. Go to `Preferences/Settings` → `Editor` → `Font`, and pick JetBrains Mono from the Font dropdown.
 
-### **Visual Studio Code**
+### **Visual Studio Code** 
 
 * Follow the instructions above to step 3.
-* Go to the settings editor, from the File menu choose Preferences, Settings or use keyboard shortcut `Ctrl`+, (`Cmd`+, on Mac).
+* Go to the settings editor, from the File menu choose Preferences, Settings or use keyboard shortcut <kbd>Ctrl</kbd>+, (<kbd>Cmd</kbd>+, on Mac).
 * In the *"Font Family"* input box type JetBrains Mono, replacing any content.
 * To enable ligatures turn on the checkbox in *"Font ligatures"*.
 
@@ -41,9 +61,34 @@ Visual Studio Code allows you to also edit the underlying settings.json config f
 
 Then paste the following lines and save the file.
 
-```
+```json
 "editor.fontFamily": "JetBrains Mono",
 "editor.fontLigatures": true,
+```
+
+### **ChromeOS Terminal**
+In the terminal:
+1. Use the keyboard shortcut <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd> to open up settings.
+2. Scroll down to "Custom CSS (Inline Text)".
+3. Copy & paste the following:
+
+```css
+@font-face{
+    font-family: 'JetBrains Mono';
+    src: url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/web/eot/JetBrainsMono-Regular.eot') format('embedded-opentype'),
+         url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/web/woff2/JetBrainsMono-Regular.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/web/woff/JetBrainsMono-Regular.woff') format('woff'),
+         url('https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/ttf/JetBrainsMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    -webkit-font-feature-settings: "liga" on, "calt" on;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: 'JetBrains Mono';
+}
 ```
 
 ## Source files
@@ -64,8 +109,8 @@ Konstantin Bulenkov
 
 **Thanks to**\
 Nikita Prokopov\
-Eugene Auduchinok\
 Tatiana Tulupenko\
+Eugene Auduchinok\
 Dmitrij Batrak\
 IntelliJ Platform UX Team\
 Web Team
